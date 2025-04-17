@@ -1,0 +1,171 @@
+---
+import { getTranslations, useTranslatedPath, languages } from "../i18n/utils";
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const navItems = [
+  { name: t.nav.home, url: translatePath("/") },
+  { name: t.nav.about, url: "#about" },
+  { name: t.nav.services, url: "#services" },
+  { name: t.nav.contact, url: "#contact" }
+];
+
+// Importar el script del tema con client:load para asegurar que se ejecute solo en el cliente
+---
+
+<header class="fixed w-full z-50 transition-all duration-300" id="navbar">
+  <div class="container mx-auto px-4">
+    <nav class="flex items-center justify-between py-4">
+      <div class="flex items-center">
+        <a href={translatePath("/")} class="text-2xl font-bold flex items-center gap-2">
+          <div class="w-8 h-8">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" 
+                stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <defs>
+                <linearGradient id="gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#3D5AFE"/>
+                  <stop offset="1" stop-color="#FF4081"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span class="gradient-text">Nexogen</span>
+        </a>
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <ul class="flex items-center gap-6">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.url} class="text-gray-300 hover:text-white dark:text-light-text dark:hover:text-nexogen-blue transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Botón para cambiar idioma -->
+        <div class="flex gap-2">
+          {Object.entries(languages).map(([langCode, langLabel]) => (
+            <a 
+              href={`/${langCode}/`} 
+              class={`px-3 py-1.5 rounded-md transition-colors ${
+                lang === langCode 
+                ? 'bg-nexogen-blue text-white' 
+                : 'bg-nexogen-blue/10 text-gray-300 hover:bg-nexogen-blue/20 dark:text-light-text'
+              }`}
+            >
+              {langCode.toUpperCase()}
+            </a>
+          ))}
+        </div>
+
+        <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-nexogen-blue/10 hover:bg-nexogen-blue/20 dark:bg-light-hover dark:hover:shadow-light-btn transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sun-icon hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 moon-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Mobile Navigation Trigger -->
+      <div class="md:hidden flex items-center gap-4">
+        <!-- Botones de idioma para móvil -->
+        <div class="flex gap-1">
+          {Object.entries(languages).map(([langCode, langLabel]) => (
+            <a 
+              href={`/${langCode}/`} 
+              class={`px-2 py-1 rounded-md text-xs transition-colors ${
+                lang === langCode 
+                ? 'bg-nexogen-blue text-white' 
+                : 'bg-nexogen-blue/10 text-gray-300 hover:bg-nexogen-blue/20 dark:text-light-text'
+              }`}
+            >
+              {langCode.toUpperCase()}
+            </a>
+          ))}
+        </div>
+        
+        <button id="theme-toggle-mobile" class="w-10 h-10 rounded-full flex items-center justify-center bg-nexogen-blue/10 hover:bg-nexogen-blue/20 dark:bg-light-hover dark:hover:shadow-light-btn transition-all">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sun-icon hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 moon-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />
+          </svg>
+        </button>
+        <button id="mobile-menu-button" aria-label="Menu" class="w-10 h-10 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden bg-nexogen-dark dark:bg-light-bg border-t border-gray-800 dark:border-light-accent shadow-lg">
+    <div class="container mx-auto px-4 py-6">
+      <ul class="flex flex-col gap-4">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.url} class="text-gray-300 dark:text-light-text hover:text-white dark:hover:text-nexogen-blue block py-2 text-lg">
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</header>
+
+<script src="../scripts/theme.js"></script>
+
+<script>
+  // Navbar scroll behavior
+  const navbar = document.getElementById('navbar');
+  let lastScrollTop = 0;
+
+  window.addEventListener('scroll', function() {
+    const scrollTop = window.scrollY;
+
+    // Add background when scrolling down
+    if (scrollTop > 50) {
+      navbar.classList.add('bg-nexogen-dark/95', 'dark:bg-light-bg/95', 'backdrop-blur-md', 'shadow-md');
+    } else {
+      navbar.classList.remove('bg-nexogen-dark/95', 'dark:bg-light-bg/95', 'backdrop-blur-md', 'shadow-md');
+    }
+
+    // Hide navbar when scrolling down, show when scrolling up
+    if (scrollTop > lastScrollTop && scrollTop > 300) {
+      // Scrolling down
+      navbar.style.transform = 'translateY(-100%)';
+    } else {
+      // Scrolling up
+      navbar.style.transform = 'translateY(0)';
+    }
+
+    lastScrollTop = scrollTop;
+  });
+
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Mobile menu links - close menu when clicked
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+    });
+  });
+</script>

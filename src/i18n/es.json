@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "services": "Servicios",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "tagline": "La Nueva Generación de Soluciones Inteligentes",
+    "description": "Potenciamos empresas con soluciones tecnológicas de vanguardia, desde aplicaciones impulsadas por IA hasta desarrollo de software personalizado.",
+    "cta": "Comenzar"
+  },
+  "about": {
+    "title": "Nosotros",
+    "paragraph1": "En Nexogen, no solo construimos software; estamos creando el futuro de la innovación digital. Nuestro equipo de expertos combina tecnología de vanguardia con resolución creativa de problemas para ofrecer soluciones que transforman negocios.",
+    "paragraph2": "Nos especializamos en desarrollar soluciones personalizadas impulsadas por IA que se adaptan a las necesidades específicas de tu empresa, asegurando que estés a la vanguardia en el panorama digital actual en constante evolución.",
+    "innovation": "Innovación Primero",
+    "innovationDesc": "Superando límites con tecnología de vanguardia",
+    "custom": "Soluciones Personalizadas",
+    "customDesc": "Adaptadas a tus necesidades específicas",
+    "ai": "Impulsado por IA",
+    "aiDesc": "Soluciones inteligentes para problemas complejos",
+    "team": "Equipo Experto",
+    "teamDesc": "Profesionales cualificados a tu servicio"
+  },
+  "services": {
+    "title": "Nuestros Servicios",
+    "items": [
+      {
+        "title": "Desarrollo de Software a Medida",
+        "description": "Soluciones personalizadas diseñadas para satisfacer las necesidades específicas de tu negocio",
+        "icon": "💻"
+      },
+      {
+        "title": "Aplicaciones Web Modernas",
+        "description": "Aplicaciones web responsivas y escalables construidas con tecnología de vanguardia",
+        "icon": "🌐"
+      },
+      {
+        "title": "Aplicaciones de Escritorio",
+        "description": "Potentes soluciones de escritorio para mejorar la productividad",
+        "icon": "🖥️"
+      },
+      {
+        "title": "Chatbots y Agentes IA",
+        "description": "Interfaces conversacionales inteligentes potenciadas por IA avanzada",
+        "icon": "🤖"
+      },
+      {
+        "title": "Soluciones de IA",
+        "description": "Sistemas inteligentes que aprenden y se adaptan a tu negocio",
+        "icon": "🧠"
+      },
+      {
+        "title": "Integración y Automatización",
+        "description": "Optimiza tus flujos de trabajo con automatización inteligente",
+        "icon": "⚡"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Ponte en Contacto",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "reset": "Restablecer"
+  },
+  "footer": {
+    "company": "La Nueva Generación de Soluciones Inteligentes",
+    "contact": "Contacto",
+    "email": "Correo: info@nexogen.com",
+    "phone": "Teléfono: +1 (555) 123-4567",
+    "follow": "Síguenos",
+    "copyright": "Todos los derechos reservados."
+  },
+  "language": {
+    "select": "Idioma",
+    "en": "Inglés",
+    "es": "Español"
+  }
+}

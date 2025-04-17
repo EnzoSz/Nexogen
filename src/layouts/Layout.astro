@@ -1,0 +1,86 @@
+---
+import '@fontsource/inter';
+import { ViewTransitions } from 'astro:transitions';
+import Navbar from '../components/Navbar.astro';
+import { getTranslations } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+}
+
+const { 
+  title, 
+  description = "Nexogen - The Next Generation of Smart Solutions. We provide cutting-edge technology solutions including AI, custom software development, and intelligent automation.",
+  lang = 'en'
+} = Astro.props;
+
+const t = getTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Nexogen, soluciones tecnológicas, IA, desarrollo de software, aplicaciones web" />
+    <ViewTransitions />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script is:inline>
+      // Set theme before page loads to prevent flash
+      if (localStorage.theme === 'light' || (!('theme' in localStorage) && 
+          window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </head>
+  <body class="bg-nexogen-dark text-white dark:bg-light-bg dark:text-light-text min-h-screen">
+    <Navbar lang={lang} />
+    <slot />
+  </body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      AOS.init({
+        duration: 800,
+        once: true,
+        disable: window.innerWidth < 768 ? true : false,
+      });
+    });
+
+    // Reiniciar AOS al cambiar la transición de página
+    document.addEventListener('astro:page-load', () => {
+      AOS.refresh();
+    });
+  </script>
+</html>
+
+<style is:global>
+  :root {
+    --accent: 61, 90, 254;
+    --accent-light: 255, 64, 129;
+  }
+  
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+  }
+
+  .gradient-text {
+    background: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+</style>

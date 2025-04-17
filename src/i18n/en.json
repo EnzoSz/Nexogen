@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "The Next Generation of Smart Solutions",
+    "description": "Empowering businesses with cutting-edge technology solutions, from AI-driven applications to custom software development.",
+    "cta": "Get Started"
+  },
+  "about": {
+    "title": "About",
+    "paragraph1": "At Nexogen, we're not just building software; we're crafting the future of digital innovation. Our team of experts combines cutting-edge technology with creative problem-solving to deliver solutions that transform businesses.",
+    "paragraph2": "We specialize in developing custom AI-powered solutions that adapt to your unique business needs, ensuring you stay ahead in today's rapidly evolving digital landscape.",
+    "innovation": "Innovation First",
+    "innovationDesc": "Pushing boundaries with cutting-edge technology",
+    "custom": "Custom Solutions",
+    "customDesc": "Tailored to your specific needs",
+    "ai": "AI-Powered",
+    "aiDesc": "Intelligent solutions for complex problems",
+    "team": "Expert Team",
+    "teamDesc": "Skilled professionals at your service"
+  },
+  "services": {
+    "title": "Our Services",
+    "items": [
+      {
+        "title": "Custom Software Development",
+        "description": "Tailored solutions designed to meet your specific business needs",
+        "icon": "💻"
+      },
+      {
+        "title": "Modern Web Applications",
+        "description": "Responsive and scalable web applications built with cutting-edge technology",
+        "icon": "🌐"
+      },
+      {
+        "title": "Desktop Applications",
+        "description": "Powerful desktop solutions for enhanced productivity",
+        "icon": "🖥️"
+      },
+      {
+        "title": "Chatbots & AI Agents",
+        "description": "Intelligent conversational interfaces powered by advanced AI",
+        "icon": "🤖"
+      },
+      {
+        "title": "AI Solutions",
+        "description": "Smart systems that learn and adapt to your business",
+        "icon": "🧠"
+      },
+      {
+        "title": "Integration & Automation",
+        "description": "Streamline your workflows with smart automation",
+        "icon": "⚡"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send": "Send Message",
+    "reset": "Reset"
+  },
+  "footer": {
+    "company": "The Next Generation of Smart Solutions",
+    "contact": "Contact",
+    "email": "Email: info@nexogen.com",
+    "phone": "Phone: +1 (555) 123-4567",
+    "follow": "Follow Us",
+    "copyright": "All rights reserved."
+  },
+  "language": {
+    "select": "Language",
+    "en": "English",
+    "es": "Spanish"
+  }
+}

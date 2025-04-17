@@ -1,0 +1,27 @@
+---
+import { getTranslations } from "../i18n/utils";
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+
+// Usar las traducciones para los servicios
+const services = t.services.items;
+---
+<section id="services" class="py-20 px-4 bg-black/20 dark:bg-light-hover/20">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl font-bold mb-12 text-center" data-aos="fade-up">{t.services.title}</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service, index) => (
+        <div 
+          class="p-6 rounded-lg bg-nexogen-dark dark:bg-white border border-gray-800 dark:border-light-accent hover:border-nexogen-blue dark:hover:border-nexogen-blue transition-all group shadow-md dark:shadow-light-btn"
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+        >
+          <div class="text-4xl mb-4 transform group-hover:scale-110 transition-transform">{service.icon}</div>
+          <h3 class="text-xl font-semibold mb-3 dark:text-light-text">{service.title}</h3>
+          <p class="text-gray-400 dark:text-light-text/70">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

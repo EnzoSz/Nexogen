@@ -1,0 +1,39 @@
+---
+import { getTranslations } from "../i18n/utils";
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+---
+<section id="about" class="py-20 px-4">
+  <div class="max-w-6xl mx-auto" data-aos="fade-up">
+    <h2 class="text-4xl font-bold mb-12 text-center">{t.about.title} <span class="gradient-text">Nexogen</span></h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <p class="text-lg text-gray-300 dark:text-light-text">
+          {t.about.paragraph1}
+        </p>
+        <p class="text-lg text-gray-300 dark:text-light-text">
+          {t.about.paragraph2}
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="bg-nexogen-dark dark:bg-light-hover p-6 rounded-lg border border-nexogen-blue shadow-sm dark:shadow-light-btn">
+          <h3 class="text-xl font-semibold mb-2 dark:text-light-text">{t.about.innovation}</h3>
+          <p class="text-gray-400 dark:text-light-text/70">{t.about.innovationDesc}</p>
+        </div>
+        <div class="bg-nexogen-dark dark:bg-light-hover p-6 rounded-lg border border-nexogen-magenta shadow-sm dark:shadow-light-btn">
+          <h3 class="text-xl font-semibold mb-2 dark:text-light-text">{t.about.custom}</h3>
+          <p class="text-gray-400 dark:text-light-text/70">{t.about.customDesc}</p>
+        </div>
+        <div class="bg-nexogen-dark dark:bg-light-hover p-6 rounded-lg border border-nexogen-magenta shadow-sm dark:shadow-light-btn">
+          <h3 class="text-xl font-semibold mb-2 dark:text-light-text">{t.about.ai}</h3>
+          <p class="text-gray-400 dark:text-light-text/70">{t.about.aiDesc}</p>
+        </div>
+        <div class="bg-nexogen-dark dark:bg-light-hover p-6 rounded-lg border border-nexogen-blue shadow-sm dark:shadow-light-btn">
+          <h3 class="text-xl font-semibold mb-2 dark:text-light-text">{t.about.team}</h3>
+          <p class="text-gray-400 dark:text-light-text/70">{t.about.teamDesc}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
