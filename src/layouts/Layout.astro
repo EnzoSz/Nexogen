@@ -54,12 +54,57 @@ const t = getTranslations(lang);
         once: true,
         disable: window.innerWidth < 768 ? true : false,
       });
+      
+      // Manejo mejorado de navegación con anclas
+      setupSmoothScrolling();
     });
 
     // Reiniciar AOS al cambiar la transición de página
     document.addEventListener('astro:page-load', () => {
       AOS.refresh();
+      
+      // Volver a configurar la navegación suave después de cada transición de página
+      setupSmoothScrolling();
+      
+      // Manejar la navegación a secciones cuando se carga la página con un hash en la URL
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Esperar un pequeño tiempo para que todo se cargue correctamente
+          setTimeout(() => {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 200);
+        }
+      }
     });
+    
+    function setupSmoothScrolling() {
+      // Manejar clics en enlaces internos con anclas
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            e.preventDefault();
+            
+            // Compensar la altura de la barra de navegación fija
+            const navbarHeight = document.querySelector('header').offsetHeight;
+            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+            
+            // Actualizar la URL con el hash, pero sin saltar a la sección (ya lo hicimos manualmente)
+            history.pushState(null, null, `#${targetId}`);
+          }
+        });
+      });
+    }
   </script>
 </html>
 
@@ -71,6 +116,7 @@ const t = getTranslations(lang);
   
   html {
     font-family: 'Inter', system-ui, sans-serif;
+    scroll-padding-top: 80px; /* Añadir padding para compensar la navbar fija */
   }
   
   body {
@@ -82,5 +128,10 @@ const t = getTranslations(lang);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+  
+  /* Asegurar que las secciones con ID tengan suficiente espacio superior */
+  section[id] {
+    scroll-margin-top: 80px;
   }
 </style>

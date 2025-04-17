@@ -12,6 +12,13 @@ const navItems = [
   { name: t.nav.contact, url: "#contact" }
 ];
 
+// Determinar la bandera y el texto según el idioma actual
+const currentLanguage = lang === 'en' ? 'English' : 'Español';
+const flagIcon = lang === 'en' ? '🇺🇸' : '🇪🇸';
+const otherLang = lang === 'en' ? 'es' : 'en';
+const otherLanguage = lang === 'en' ? 'Español' : 'English';
+const otherFlagIcon = lang === 'en' ? '🇪🇸' : '🇺🇸';
+
 // Importar el script del tema con client:load para asegurar que se ejecute solo en el cliente
 ---
 
@@ -48,20 +55,21 @@ const navItems = [
           ))}
         </ul>
 
-        <!-- Botón para cambiar idioma -->
-        <div class="flex gap-2">
-          {Object.entries(languages).map(([langCode, langLabel]) => (
-            <a 
-              href={`/${langCode}/`} 
-              class={`px-3 py-1.5 rounded-md transition-colors ${
-                lang === langCode 
-                ? 'bg-nexogen-blue text-white' 
-                : 'bg-nexogen-blue/10 text-gray-300 hover:bg-nexogen-blue/20 dark:text-light-text'
-              }`}
-            >
-              {langCode.toUpperCase()}
+        <!-- Botón para cambiar idioma estilo Musa -->
+        <div class="relative">
+          <a href={`/${otherLang}/`} class="flex items-center gap-2 bg-nexogen-blue/10 hover:bg-nexogen-blue/20 text-white dark:text-light-text transition-colors px-4 py-2 rounded-md">
+            <span class="text-lg">{flagIcon}</span>
+            <span>{currentLanguage}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <div class="absolute right-0 mt-2 w-40 bg-nexogen-dark dark:bg-white shadow-lg rounded-lg hidden hover:block group-hover:block language-dropdown">
+            <a href={`/${otherLang}/`} class="flex items-center gap-2 px-4 py-3 hover:bg-nexogen-blue/10 text-gray-300 dark:text-light-text">
+              <span class="text-lg">{otherFlagIcon}</span>
+              <span>{otherLanguage}</span>
             </a>
-          ))}
+          </div>
         </div>
 
         <button id="theme-toggle" class="w-10 h-10 rounded-full flex items-center justify-center bg-nexogen-blue/10 hover:bg-nexogen-blue/20 dark:bg-light-hover dark:hover:shadow-light-btn transition-all">
@@ -76,21 +84,10 @@ const navItems = [
       
       <!-- Mobile Navigation Trigger -->
       <div class="md:hidden flex items-center gap-4">
-        <!-- Botones de idioma para móvil -->
-        <div class="flex gap-1">
-          {Object.entries(languages).map(([langCode, langLabel]) => (
-            <a 
-              href={`/${langCode}/`} 
-              class={`px-2 py-1 rounded-md text-xs transition-colors ${
-                lang === langCode 
-                ? 'bg-nexogen-blue text-white' 
-                : 'bg-nexogen-blue/10 text-gray-300 hover:bg-nexogen-blue/20 dark:text-light-text'
-              }`}
-            >
-              {langCode.toUpperCase()}
-            </a>
-          ))}
-        </div>
+        <!-- Botón de idioma para móvil -->
+        <a href={`/${otherLang}/`} class="flex items-center gap-1 px-2 py-1 rounded-md bg-nexogen-blue/10 text-gray-300 dark:text-light-text">
+          <span class="text-sm">{flagIcon}</span>
+        </a>
         
         <button id="theme-toggle-mobile" class="w-10 h-10 rounded-full flex items-center justify-center bg-nexogen-blue/10 hover:bg-nexogen-blue/20 dark:bg-light-hover dark:hover:shadow-light-btn transition-all">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 sun-icon hidden">
@@ -120,6 +117,12 @@ const navItems = [
             </a>
           </li>
         ))}
+        <li>
+          <a href={`/${otherLang}/`} class="flex items-center gap-2 text-gray-300 dark:text-light-text hover:text-white dark:hover:text-nexogen-blue block py-2 text-lg">
+            <span>{otherFlagIcon}</span>
+            <span>{otherLanguage}</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
@@ -167,5 +170,24 @@ const navItems = [
     link.addEventListener('click', () => {
       mobileMenu.classList.add('hidden');
     });
+  });
+  
+  // Toggle dropdown del idioma
+  document.addEventListener('DOMContentLoaded', function() {
+    const languageButton = document.querySelector('.language-dropdown').previousElementSibling;
+    const languageDropdown = document.querySelector('.language-dropdown');
+    
+    if (languageButton && languageDropdown) {
+      languageButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        languageDropdown.classList.toggle('hidden');
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
+          languageDropdown.classList.add('hidden');
+        }
+      });
+    }
   });
 </script>
